@@ -52,9 +52,6 @@ mongodb://127.0.0.1:27017
 3️⃣ Run the Flask app
 python appy.py
 
-4️⃣ Open in browser
-http://127.0.0.1:5000
-
 💡 Key Learnings
 
 CRUD operations with Flask
