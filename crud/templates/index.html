@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <h2>All Students</h2>
+    <span>Total: {{ students|length }} student{{ '' if students|length == 1 else 's' }}</span>
+  </div>
+  <a href="{{ url_for('add_student') }}" class="btn btn-primary">+ Add New</a>
+</div>
+
+{% if students|length == 0 %}
+<div class="empty-state">
+  <p>No students added yet.</p>
+  <a href="{{ url_for('add_student') }}" class="btn btn-primary">
+    Add your first student
+  </a>
+</div>
+{% else %}
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>USN</th>
+      <th>Department</th>
+      <th style="width: 180px;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in students %}
+    <tr>
+      <td>{{ s.name }}</td>
+      <td><span class="chip">{{ s.usn }}</span></td>
+      <td>{{ s.dept }}</td>
+      <td>
+        <a
+          href="{{ url_for('edit_student', id=s._id) }}"
+          class="btn btn-ghost"
+          style="padding: 5px 10px; font-size: 12px;"
+          >Edit</a
+        >
+        <form
+          action="{{ url_for('delete_student', id=s._id) }}"
+          method="POST"
+          class="inline"
+          onsubmit="return confirm('Delete this student?');"
+        >
+          <button
+            type="submit"
+            class="btn btn-ghost"
+            style="
+              padding: 5px 10px;
+              font-size: 12px;
+              border-color: rgba(248, 113, 113, 0.7);
+              color: #fecaca;
+            "
+          >
+            Delete
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

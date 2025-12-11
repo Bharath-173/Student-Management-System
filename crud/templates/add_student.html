@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <h2>Add New Student</h2>
+    <span>Fill the details and click save</span>
+  </div>
+</div>
+
+<div class="form-card">
+  <form method="POST">
+    <div class="form-row">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        name="name"
+        placeholder="e.g., Bharath A"
+        required
+      />
+    </div>
+
+    <div class="form-row">
+      <label for="usn">USN</label>
+      <input
+        id="usn"
+        name="usn"
+        placeholder="e.g., 4HG22CS008"
+        required
+      />
+    </div>
+
+    <div class="form-row">
+      <label for="dept">Department</label>
+      <input
+        id="dept"
+        name="dept"
+        placeholder="e.g., CSE"
+        required
+      />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Save Student</button>
+      <a href="{{ url_for('home') }}" class="btn btn-ghost">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
